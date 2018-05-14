@@ -4,10 +4,9 @@ package br.com.fatepg.quiz;
 
 import java.util.ArrayList;
 import java.util.List;
-
 /**
  *
- * @author André
+ * @author Felipe Mota
  */
 public class Usuario{
     
@@ -21,6 +20,15 @@ public class Usuario{
         this.media = media;
         this.last10 = last10;
     } */
+    
+    public void pegarPartidas(){
+        last10.clear();
+        for(Quiz testeUser : TestesRealizados.last10Geral){
+            if(testeUser.getUser().equals(this.getNome())){
+                last10.add(testeUser.getPontuacao());
+            }
+        }
+    }
         
     public String getNome() {
         return nome;
@@ -30,14 +38,14 @@ public class Usuario{
         this.nome = nome;
     }
 
-    public double getMedia(List<Double> last10) {
-        media =0;
-        for (int i=0;i<last10.size();i++) {           
-            media += last10.get(i);
-        }
-        media /= last10.size();
+    public double getMedia() {
         
-        return media;
+        for (int i=0;i<last10.size();i++) {           
+            this.media += last10.get(i);
+        }
+        this.media /= last10.size();
+        
+        return this.media;
     }
 
     public void setMedia(double media) {

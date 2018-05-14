@@ -40,7 +40,20 @@ public class TestesRealizados {
         this.dataTeste = dataTeste;
     }*/
 
+    public void gerarTopPontuacoes(){
+        this.setMelhoresNotas(this.getLast10Geral());
+        for (int i = this.getMelhoresNotas().size() ; i >= 1; i--) {
+            for (int j = 1; j < i; j++) {
+                if (this.getMelhoresNotas().get(j - 1).getPontuacao() > this.getMelhoresNotas().get(j).getPontuacao()) {
+                    Quiz aux = this.getMelhoresNotas().get(j);
+                    this.getMelhoresNotas().set(j, this.getMelhoresNotas().get(j - 1));
+                    this.getMelhoresNotas().set(j - 1, aux);
+                }
+            }
+        }
 
+    }
+    
     public String getNomeUser() {
         return nomeUser;
     }
